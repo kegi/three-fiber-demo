@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useFrame, useThree } from "react-three-fiber"
 import { Vector3 } from "three"
 import { useSphere } from "@react-three/cannon"
@@ -29,10 +29,17 @@ const Player: React.FC<PlayerProps> = ({
         left: keys.has('KeyA') || keys.has('ArrowLeft'),
         right: keys.has('KeyD') || keys.has('ArrowRight'),
     }
+    const jump = keys.has('Space')
 
-    const [ ref, api ] = useSphere(() => ({ mass, type: 'Dynamic', position }))
+    const [canJump, setCanJump] = useState(false)
+
+    const [ ref, api ] = useSphere(() => ({ mass, type: 'Dynamic', position, onCollide }))
     const { camera } = useThree()
     const velocity = useRef([0, 0, 0])
+
+    const onCollide = () => {
+        setCanJump(true)
+    }
 
     useEffect(() => {
         api.velocity.subscribe((newVelocity) => {
@@ -58,13 +65,19 @@ const Player: React.FC<PlayerProps> = ({
         camera.position.copy(ref.current.position)
         camera.position.setY(camera.position.y + height)
 
+        let jumpVelocity = 0
+        if(canJump && jump){
+            setCanJump(false)
+            jumpVelocity = 10
+        }
+
         frontVector.set(0, 0, frontVelocity)
         sideVector.set(sideVelocity, 0, 0)
         direction.subVectors(frontVector, sideVector)
             .normalize()
             .multiplyScalar(speed)
             .applyEuler(camera.rotation)
-        api.velocity.set(direction.x, velocity.current[1], direction.z)
+        api.velocity.set(direction.x, velocity.current[1] + jumpVelocity, direction.z)
     })
 
     return <mesh ref={ref}></mesh>

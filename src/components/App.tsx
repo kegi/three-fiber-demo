@@ -29,7 +29,7 @@ const App:React.FC = () => {
         <hemisphereLight intensity={0.35} />
         <spotLight position={[10, 10, 10]} angle={0.3} penumbra={1} intensity={2} castShadow />
 
-        <Physics>
+        <Physics gravity={[0, -20, 0]}>
           
           <Sky timeAnimation={false} time="5h55" />
 
