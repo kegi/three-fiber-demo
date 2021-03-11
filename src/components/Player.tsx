@@ -9,6 +9,7 @@ interface PlayerProps {
     height ?: number
     position ?: [number, number, number]
     speed?: number
+    jumpForce?: number
     mass?: number
 }
 
@@ -20,6 +21,7 @@ const Player: React.FC<PlayerProps> = ({
     height = 5,
     position = [0, 10, 0],
     speed = 8,
+    jumpForce = 10,
     mass = 5,
 }) => {
     const keys = useKeyboard()
@@ -68,7 +70,7 @@ const Player: React.FC<PlayerProps> = ({
         let jumpVelocity = 0
         if(canJump && jump){
             setCanJump(false)
-            jumpVelocity = 10
+            jumpVelocity = Math.max(jumpForce - velocity.current[1], 0)
         }
 
         frontVector.set(0, 0, frontVelocity)
