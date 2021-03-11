@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/three-fiber-demo/static/css/main.27990a95.chunk.css",
-    "main.js": "/three-fiber-demo/static/js/main.7dfbf741.chunk.js",
-    "main.js.map": "/three-fiber-demo/static/js/main.7dfbf741.chunk.js.map",
+    "main.js": "/three-fiber-demo/static/js/main.0c00ee90.chunk.js",
+    "main.js.map": "/three-fiber-demo/static/js/main.0c00ee90.chunk.js.map",
     "runtime-main.js": "/three-fiber-demo/static/js/runtime-main.07ac27dd.js",
     "runtime-main.js.map": "/three-fiber-demo/static/js/runtime-main.07ac27dd.js.map",
     "static/js/2.75353420.chunk.js": "/three-fiber-demo/static/js/2.75353420.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.07ac27dd.js",
     "static/js/2.75353420.chunk.js",
     "static/css/main.27990a95.chunk.css",
-    "static/js/main.7dfbf741.chunk.js"
+    "static/js/main.0c00ee90.chunk.js"
   ]
 }
